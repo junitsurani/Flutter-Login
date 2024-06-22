@@ -85,7 +85,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   void _attemptRegistration() {
     if (_isEmailValid && _isPasswordValid) {
-      _logEvent('User registered with email: ${_emailController.text}');
+      _logEvent('User registered with email: ${_emailController.text} and Password: ${_passwordController.text}');
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Registered Successfully!')));
     } else {
       _logEvent('Registration attempt failed due to invalid input');
@@ -176,6 +176,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           borderSide: BorderSide(color: primaryColor),
                         ),
                         prefixIcon: Icon(Icons.lock, color: primaryColor),
+                        errorMaxLines: 3,
                       ),
                       obscureText: true,
                       onChanged: _validatePassword,
@@ -187,6 +188,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         return null;
                       },
                     ),
+
                     SizedBox(height: 20.0),
                     ElevatedButton(
                       onPressed: _isEmailValid && _isPasswordValid ? _attemptRegistration : null,
